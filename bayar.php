@@ -238,8 +238,17 @@ $mysql_tampil = mysqli_query($host, "SELECT * FROM landing_page WHERE id_buku=$i
 <script>
         window.print();
     </script>
-    <button style="background-color:#345634" id="pay-button">Pay!</button>
-    <pre><div id="result-json">JSON result will appear here after payment:<br></div></pre> 
+    <button style="background-color: #4CAF50; border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px; width:50%; float:center;
+                position:relative;" id="pay-button">Pay!</button>
+                
+    <pre>
+    <div id="result-json">JSON result will appear here after payment:<br></div></pre> 
 
 <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<Set your ClientKey here>"></script>
