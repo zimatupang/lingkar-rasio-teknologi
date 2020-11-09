@@ -1,23 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/midtrans-php-master/Midtrans.php';
 
-// Set your Merchant Server Key
-\Midtrans\Config::$serverKey = 'SB-Mid-server-5yaCQm58QoiCswEGndCwE2sV';
-// Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-\Midtrans\Config::$isProduction = false;
-// Set sanitization on (default)
-\Midtrans\Config::$isSanitized = true;
-// Set 3DS transaction for credit card to true
-\Midtrans\Config::$is3ds = true;
-
-$params = array(
-    'transaction_details' => array(
-        'order_id' => rand(),
-        'gross_amount' => 10000,
-    )
-);
-
-$snapToken = \Midtrans\Snap::getSnapToken($params);
 
 
 include('connection.php');
@@ -96,30 +78,7 @@ if(isset($_GET['id_buku'])){
     </head>
 
     <body style="background-image: url(background-1.jpg); background-size: 100%; display: grid;">
-    <button id="pay-button">Pay!</button>
-    <pre><div id="result-json">JSON result will appear here after payment:<br></div></pre> 
-
-<!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<Set your ClientKey here>"></script>
-    <script type="text/javascript">
-      document.getElementById('pay-button').onclick = function(){
-        // SnapToken acquired from previous step
-        snap.pay('<?=$snapToken?>', {
-          // Optional
-          onSuccess: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onPending: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onError: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          }
-        });
-      };
-    </script>
+    
         <div style="width: 100%;">
             <div id="desc" style="width: 35%; float: left; background-color: rgba(255, 255, 255, 0.6);margin-top: 10%; margin-left: 10%;">
                 <h3>DAPATKAN SEKARANG!</h3>
@@ -140,7 +99,7 @@ if(isset($_GET['id_buku'])){
         
         <div style=" display: block; margin-left: auto; margin-right: auto;">
             <div>
-                <p style="text-align:center;">Produk Lainnya</p>
+                <p style="text-align:center; font-size:24pt;">Produk Lainnya</p>
             </div>
             <div>
                 <table>
@@ -154,7 +113,7 @@ if(isset($_GET['id_buku'])){
                             ?>
                         
                         <td class="td-class">
-                            <a href="landing-page.php?id_buku=<?php echo $data['id_buku'];?>"><div id="td_produk">
+                            <a  style="text-decoration: none; color:black; " href="landing-page.php?id_buku=<?php echo $data['id_buku'];?>"><div id="td_produk">
                                 <img src="<?php echo $data['foto_buku']; ?>">
                                 <p><?php echo $data['judul_buku']; ?></p>
                             </div>

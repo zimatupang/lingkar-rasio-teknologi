@@ -17,10 +17,12 @@ $mysql_tampil = mysqli_query($host, "SELECT * FROM landing_page WHERE id_buku=$i
             <?php $data_produk = mysqli_fetch_assoc($mysql_tampil); ?>
 
             <h1><?php echo $data_produk['judul_buku'];?></h1>
-            <form method="get" action="landing-page.php">
+
+            
+            <form method="get" action="bayar.php">
                 <div class="form">
                     <label>Nama</label>
-                    <input type="text" name="name" placeholder="Masukkan nama disini">
+                    <input type="text" name="nama" placeholder="Masukkan nama disini">
                 </div>
                 <div class="form">
                     <label>Email</label>
@@ -34,6 +36,8 @@ $mysql_tampil = mysqli_query($host, "SELECT * FROM landing_page WHERE id_buku=$i
                     <label>Jumlah</label>
                     <input type="num" name="jumlah">
                 </div>
+                <input type="hidden" name="id_buku" value="<?php echo $data_produk['id_buku'] ?>">
+                <input type="hidden" name="judul_buku" value="<?php echo $data_produk['judul_buku'] ?>">
                 
                 <div class="form">
                     <input type="submit" name="submit"
